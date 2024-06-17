@@ -2,4 +2,4 @@ streamlit>=1.26.0
 beautifulsoup4
 requests
 pandas
-matplotlib
+matplotlib.pyplot
