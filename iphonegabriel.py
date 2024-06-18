@@ -18,9 +18,13 @@ def get_usa_prices():
         for row in rows[1:]:
             cols = row.find_all("td")
             model = cols[0].text.strip()
-            price_text = cols[1].text.strip().replace('US$', '').replace(',', '').replace(' ', '')
+            price_text = cols[1].text.strip().replace('US$', '').replace(',', '')
             try:
-                price = float(price_text)
+                # Verifica se o valor é uma string de número corretamente formatada
+                if '.' in price_text:
+                    price = float(price_text)
+                else:
+                    price = int(price_text)
             except ValueError:
                 price = None
             iphones_usa[model] = price
@@ -159,4 +163,3 @@ if selected_model_comparison:
             st.write("Erro ao carregar a cotação do BRL.")
     else:
         st.write("Preços não disponíveis para o modelo selecionado.")
-
