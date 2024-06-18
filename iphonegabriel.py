@@ -4,6 +4,27 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# Configuração de estilo da página
+st.markdown(
+    """
+    <style>
+    .main {
+        background-color: #ADD8E6;
+    }
+    .title {
+        text-align: center;
+        color: #00008B;
+    }
+    .highlight {
+        font-size: 1.2em;
+        color: #FF4500;
+        font-weight: bold;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Função para raspar preços de iPhones no site da Nomad
 def get_usa_prices():
     url = "https://www.nomadglobal.com/conteudos/comprar-iphone-nos-eua"
@@ -88,6 +109,7 @@ all_models = sorted(set(usa_prices.keys()).union(set(brazil_prices.keys())))
 
 # Streamlit App
 st.title("Comparação de Preços de iPhones - Brasil vs EUA")
+st.image("https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/09/iphones-novos.jpg?w=1220&h=674&crop=1")
 
 # Parte 1: Visualização de Preços
 st.header("Visualização de Preços")
@@ -158,7 +180,7 @@ if selected_model_comparison:
             st.write(f"**Preço nos EUA:** ${usa_price_comparison:.2f}")
             st.write(f"**Preço no Brasil:** R${brazil_price_comparison:.2f}")
             st.write(f"**Preço nos EUA convertido para reais:** R${converted_usa_price:.2f}")
-            st.write(f"**Economia comprando nos EUA:** R${savings:.2f}")
+            st.markdown(f"<p class='highlight'>**Economia comprando nos EUA:** R${savings:.2f}</p>", unsafe_allow_html=True)
         else:
             st.write("Erro ao carregar a cotação do BRL.")
     else:
