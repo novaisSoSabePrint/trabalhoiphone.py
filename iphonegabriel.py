@@ -18,7 +18,7 @@ def get_usa_prices():
         for row in rows[1:]:
             cols = row.find_all("td")
             model = cols[0].text.strip()
-            price_text = cols[1].text.strip().replace('US$', '').replace(',', '')
+            price_text = cols[1].text.strip().replace('US$', '').replace(',', '').replace(' ', '')
             try:
                 price = float(price_text)
             except ValueError:
@@ -159,3 +159,4 @@ if selected_model_comparison:
             st.write("Erro ao carregar a cotação do BRL.")
     else:
         st.write("Preços não disponíveis para o modelo selecionado.")
+
