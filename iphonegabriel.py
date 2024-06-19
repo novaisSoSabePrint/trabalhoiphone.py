@@ -134,7 +134,7 @@ if valor_iphone_eua > 0 and valor_iphone_brasil > 0:
         'Salário Mensal': [4400, 2879],
         'Despesas Mensais': [3230, 2383],
         'Valor do iPhone': [valor_iphone_eua, valor_iphone_brasil],
-        'Inflação Anual': [0.02, 0.05]
+        'Inflação Anual': [0.03, 0.04]
     }
 
     df = pd.DataFrame(data)
